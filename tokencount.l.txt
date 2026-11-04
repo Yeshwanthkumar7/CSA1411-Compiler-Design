@@ -1,0 +1,31 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+"int"|"float"|"char"|"if"|"else"|"while"  { printf("\nKeyword\n"); }
+
+[a-zA-Z_][a-zA-Z0-9_]*  { printf("\nIdentifier\n"); }
+
+[0-9]+                  { printf("\nNumber\n"); }
+
+[+\-*/=<>]              { printf("\nOperator\n"); }
+
+[;(),{}]                { printf("\nSpecial Symbol\n"); }
+
+[ \t\n]+                ;
+
+.                       { printf("\nInvalid Token\n"); }
+%%
+
+int yywrap(void)
+{
+    return 1;
+}
+
+int main()
+{
+    printf("Enter a string: ");
+    yylex();
+    return 0;
+}

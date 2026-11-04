@@ -1,0 +1,26 @@
+
+%{
+
+%}
+
+%%
+#[ \t]*include {
+    printf("HEADER: %s\n", yytext);
+}
+#[ \t]*define {
+    printf("MACRO: %s\n", yytext);
+}
+.|\n ;
+%%
+
+int main()
+{
+    printf("Enter preprocessor directives:\n");
+    yylex();
+    return 0;
+}
+
+int yywrap()
+{
+    return 1;
+}
